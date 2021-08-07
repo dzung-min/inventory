@@ -1,6 +1,11 @@
 const express = require("express")
 const morgan = require("morgan")
 const createError = require("http-errors")
+const Knex = require("knex")
+const { Model } = require("objection")
+
+const knex = Knex(require("./knexfile").development)
+Model.knex(knex)
 
 const PORT = process.env.PORT || 5000
 const app = express()
