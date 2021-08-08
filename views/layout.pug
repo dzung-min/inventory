@@ -13,4 +13,12 @@ html(lang="en")
     title Inventory
   body
     .container 
-      block content  
+      .row 
+        .col.col-sm-4 
+          h2 Menu
+          .link 
+            a(href=`/categories`) Categories 
+          .link
+            a(href=`/items`) Items 
+        .col.col-sm-8
+          block content  

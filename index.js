@@ -20,7 +20,7 @@ app.use(express.json())
 app.use(express.urlencoded({ extended: false }))
 
 app.get("/", (req, res) => {
-  res.render("home", { title: "Inventory", content: "Welcome to my inventory" })
+  res.redirect("/categories")
 })
 
 app.use("/categories", categoriesRouter)

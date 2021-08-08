@@ -4,7 +4,7 @@ const createError = require("http-errors")
 exports.getCategoryList = async (req, res, next) => {
   try {
     const categories = await Category.query()
-    res.send(categories)
+    res.render("categories", { categories })
   } catch (e) {
     next(e)
   }
@@ -18,7 +18,7 @@ exports.getCategoryById = async (req, res, next) => {
     if (!category) {
       return next(createError.NotFound())
     }
-    res.send(category)
+    res.render("category", { category })
   } catch (e) {
     next(e)
   }
