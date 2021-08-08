@@ -1,5 +1,4 @@
 const { Model } = require("objection")
-const Category = require("./Category")
 
 class Item extends Model {
   static get tableName() {
@@ -7,6 +6,7 @@ class Item extends Model {
   }
 
   static get relationMappings() {
+    const Category = require("./Category")
     return {
       category: {
         relation: Model.BelongsToOneRelation,

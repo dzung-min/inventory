@@ -4,6 +4,9 @@ const createError = require("http-errors")
 const Knex = require("knex")
 const { Model } = require("objection")
 
+const categoriesRouter = require("./routes/categories")
+const itemsRouter = require("./routes/items")
+
 const knex = Knex(require("./knexfile").development)
 Model.knex(knex)
 
@@ -20,6 +23,9 @@ app.get("/", (req, res) => {
   res.render("home", { title: "Inventory", content: "Welcome to my inventory" })
 })
 
+app.use("/categories", categoriesRouter)
+app.use("/items", itemsRouter)
+
 app.use((req, res, next) => {
   next(createError.NotFound())
 })
@@ -27,7 +33,7 @@ app.use((req, res, next) => {
 app.use((error, req, res, next) => {
   error.status = error.status || 500
   error.message = error.message || "Server Error"
-  res.render("error", { error })
+  res.status(error.status).render("error", { error })
 })
 
 app.listen(PORT, () => {
